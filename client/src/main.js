@@ -2,9 +2,12 @@ window.init = function init () {
 
     var date = new Date(),
         now = date.getTime(),
-        bar = document.querySelector(".bar")
+        bar = document.querySelector(".bar"),
+        pm = false
 
-    date.setHours(12 + parseInt(document.querySelector("#hour").value))
+
+    pm = document.querySelector("#pm").value == 'pm',
+    date.setHours( (pm ? 12 : 0) + parseInt(document.querySelector("#hour").value))
     date.setMinutes(parseInt(document.querySelector("#minute").value))
 
     function tick (b, s, e) {
@@ -14,7 +17,7 @@ window.init = function init () {
             progress = (now - s),
             percent = (100 * (progress / duration).toFixed(16))
 
-        document.title = "Progress " + Math.round(percent) + "%"
+        document.title = `${Math.round(percent)}% Done`
         b.setAttribute("style", "width:" + percent + "%;")
 
         setTimeout( () => {
