@@ -1,7 +1,7 @@
 # progress
 The _slightly ironic_ tool for keeping track of time
 
-## Go Want to do Look More Like
+## Install
 
 ```shell
 cd client && npm install && ./build.sh
