@@ -1,24 +1,7 @@
-let styles = {       
-    bar: {
-       height: '48px',
-       background: "repeating-linear-gradient( 45deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 20px, rgba(0, 0, 0, 0.2) 20px, rgba(0, 0, 0, 0.2) 40px ), linear-gradient(#00ff00, #00BB00)",
-       "box-shadow": "0px 0px 10px #00ff00",
-       transition: "all 0.333s ease-out",
-       position: "absolute",
-       top: 0,
-       bottom: 0,
-       left: 0,
-       margin: 'auto'
-    }
-}
-
-let applyStyle = ( element, style ) => {
-
-    Object.keys(style).map(key=> {
-        element.style[ key ] = style[ key ]
-    })
-   
-}
+import { 
+    applyStyle,
+    styles
+} from './style.js'
 
 class ProgressBar {
 
@@ -42,6 +25,7 @@ class ProgressBar {
         this.value = 0
         this.startTime = null
         this.endTime = null
+        this.hideOnComplete = config.hideOnComplete == true ? true : false
 
     }
 
@@ -94,11 +78,18 @@ class ProgressBar {
 
         this.elem.style.width = percent + "%"
 
-        setTimeout(() => {
+        if ( percent >= 100 ) {
 
-            this.tick()
+            if ( this.hideOnComplete ) 
 
-        }, 1000)
+                this.elem.style.display="none"
+            
+        } else {
+
+            setTimeout(() => { this.tick() }, 1000)
+
+        }
+        
     }
 
 }
