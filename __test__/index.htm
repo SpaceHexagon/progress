@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>Progress</title>
+        <link rel="icon" href="data/pbicon.png" />
+        <style>
+            body {
+                background: #101012;
+                color: white;
+            }
+        </style>
+        <script src="../index.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(){
+                window.bar = new ProgressBar({
+                    selector: ".bar"
+
+                })
+            }, true)
+            
+            function go () {
+                var date = new Date(),
+                    now = date.getTime(),
+                    bar = document.querySelector(".bar"),
+                    pm = false;
+
+                pm = document.querySelector("#pm").value == "pm", date.setHours((pm ? 12 : 0) + parseInt(document.querySelector("#hour").value));
+                date.setMinutes(parseInt(document.querySelector("#minute").value));
+                window.bar.start( date )
+            }
+        </script>
+		<link rel="stylesheet" href="css/app.css">
+	</head>
+	<body>
+        <form>
+            <h1>Enter time of completion:</h1>
+            <input type=number value="5" id="hour">
+			<input type="number" value="00" id="minute">
+			<select id="pm">
+				<option value="pm">PM</pm>
+				<option value="am">AM</pm>
+			</select>
+            <input type="button" value="Go" onclick="go()">
+        </form>
+		<div class='bar'></div>
+	</body>
+</html>
