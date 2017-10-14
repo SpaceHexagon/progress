@@ -23,7 +23,8 @@
                     bar = document.querySelector(".bar"),
                     pm = false;
 
-                pm = document.querySelector("#pm").value == "pm", date.setHours((pm ? 12 : 0) + parseInt(document.querySelector("#hour").value));
+                pm = document.querySelector("#pm").value == "pm"
+                date.setHours((pm ? 12 : 0) + parseInt(document.querySelector("#hour").value));
                 date.setMinutes(parseInt(document.querySelector("#minute").value));
                 window.bar.start( date )
             }
